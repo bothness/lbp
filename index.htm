@@ -1,0 +1,111 @@
+<html>
+<head>
+<title>Lebanese Lira Converter</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body class="d-flex flex-column h-100">
+
+<main role="main" class="flex-shrink-0">
+<div class="container">
+<div class="row pt-3 pb-4">
+<div class="col-lg-6">
+<h1>Lebanese Lira Converter</h1>
+
+<div>This tool is based on the unofficial/parallel market rate for Lebanese Lira (LBP) currency exchange, based on Lira rates provided by <a href="http://lebaneselira.org/" target="_blank">LebaneseLira.org</a>, and foreign exchange rates from <a href="https://support.google.com/docs/answer/3093281?hl=en">Google Finance API</a>.</div>
+
+</div>
+</div>
+
+<div class="row">
+
+<div class="card col-lg-6 bg-light">
+<div class="card-body">
+
+<p>1 <span id="fcname">US Dollar</span> =<br>
+<span class="h4"><span id="fcrate"></span> Lebanese Lira</span></p>
+
+<form name="converter">
+<div class="form-group row">
+<div class="col-6 pr-2">
+<input type="text" id="fc" value="1.00" class="form-control">
+</div>
+<div class="col-6 pl-2">
+<select id="dropdown" class="form-control">
+   <option value="USD" name=>US Dollar</option>
+   <option value="EUR">Euro</option>
+   <option value="GBP">Pound Sterling</option>
+   <option>----------</option>
+   <option value="AUD">Australian Dollar</option>
+   <option value="BHD">Bahrain Dinar</option>
+   <option value="BRL">Brazilian Real</option>
+   <option value="CAD">Canadian Dollar</option>
+   <option value="CLP">Chilean Peso</option>
+   <option value="CNY">Chinese Yuan</option>
+   <option value="COP">Colombian Peso</option>
+   <option value="CZK">Czech Koruna</option>
+   <option value="EGP">Egyptian Pound</option>
+   <option value="HKD">Hong Kong Dollar</option>
+   <option value="HUF">Hungarian Forint</option>
+   <option value="INR">Indian Rupee</option>
+   <option value="IDR">Indonesian Rupiah</option>
+   <option value="JPY">Japanese Yen</option>
+   <option value="JOD">Jordanian Dinar</option>
+   <option value="MYR">Malaysian Ringgit</option>
+   <option value="MXN">Mexican Peso</option>
+   <option value="MAD">Moroccan Dirham</option>
+   <option value="NZD">New Zealand Dollar</option>
+   <option value="NOK">Norwegian Krone</option>
+   <option value="OMR">Omani Rial</option>
+   <option value="PHP">Philipine Peso</option>
+   <option value="PLN">Polish Zloty</option>
+   <option value="QAR">Qatari Riyal</option>
+   <option value="RON">Romanian Leu</option>
+   <option value="RUB">Russian Ruble</option>
+   <option value="SAR">Saudi Real</option>
+   <option value="SGD">Singapore Dollar</option>
+   <option value="ZAR">South African Rand</option>
+   <option value="KRW">South Korean Won</option>
+   <option value="SEK">Swedish Kroner</option>
+   <option value="CHF">Swiss Franc</option>
+   <option value="TWD">Taiwan Dollar</option>
+   <option value="THB">Thai Baht</option>
+   <option value="TND">Tunisian Dinar</option>
+   <option value="TRY">Turkish Lira</option>
+   <option value="AED">UAE Dirham</option>
+</select>
+</div>
+</div>
+
+
+<div class="form-group row">
+<div class="col-6 pr-2">
+<input type="text" id="lbp" value="" class="form-control">
+</div>
+<label for="lbp" class="col-6 pl-2 col-form-label">Lebanese Lira</label>
+</div>
+</form>
+
+<small class="text-muted">Last updated on <span id="todaydate"></span>. Based on LebaneseLira.org and Google rates. This data is provided 'as is' and solely for informational purposes, not for trading purposes or advice.</small>
+
+</div>
+</div>
+
+<div id="myDiv" class="col-lg-6"></div>
+
+</div>
+</div>
+</main>
+
+<footer class="footer mt-auto py-2 bg-secondary">
+<div class="container">
+<p class="text-light">Coded by Ahmad Barclay. No rights reserved. Get the code.</p>
+</div>
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.8/jquery.csv.min.js" integrity="sha256-zGo0JbZ5Sn6wU76MyVL0TrUZUq5GLXaFnMQCe/hSwVI=" crossorigin="anonymous"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
