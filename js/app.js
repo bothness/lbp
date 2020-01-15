@@ -95,6 +95,12 @@ var layout = {
           step: 'day',
           stepmode: 'backward'
         },
+        {
+          count: 3,
+          label: '3 months',
+          step: 'month',
+          stepmode: 'backward'
+        },
         {step: 'all'}
       ]},
     rangeslider: {range: ['2019-11-06', today]},
