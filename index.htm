@@ -11,7 +11,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="description" content="A currency conversion app based on the unofficial/parallel market rate for Lebanese Lira (LBP)">
 <title>Lebanese Lira Converter</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y=" crossorigin="anonymous" />
 </head>
 <body class="d-flex flex-column h-100">
 
@@ -19,14 +19,14 @@
 <div class="container">
 <div class="row pt-3 pb-4">
 <div class="col-lg-6">
-<h1>Lebanese Lira Converter</h1>
+<h2 class="font-weight-bold">Lebanese Lira Converter</h2>
 
 <div>This app is based on the unofficial/parallel market rate for Lebanese Lira (LBP) currency exchange. It uses unofficial LBP/USD exchange rates gathered by <a href="http://lebaneselira.org/" target="_blank" class="text-info">LebaneseLira.org</a>, and foreign exchange rates from <a href="https://support.google.com/docs/answer/3093281?hl=en" target="_blank" class="text-info">Google Finance API</a>.</div>
 
 </div>
 </div>
 
-<div class="row">
+<div class="row mb-4">
 
 <div class="card col-lg-6 bg-light">
 <div class="card-body">
@@ -107,14 +107,14 @@
 
 <footer class="footer mt-auto py-2 bg-secondary">
 <div class="container">
-<p class="text-light">Coded by <a href="https://twitter.com/bothness" target="_blank" class="text-info">Ahmad Barclay</a>. No rights reserved. <a href="https://github.com/bothness/lbp" target="_blank" class="text-info">Get the code</a>.</p>
+<small class="text-light mb-2">Coded by <a href="https://twitter.com/bothness" target="_blank" class="text-info">Ahmad Barclay</a>. No rights reserved (Unlicense). <a href="https://github.com/bothness/lbp" target="_blank" class="text-info">Get the code</a>.</small>
 </div>
 </footer>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.8/jquery.csv.min.js" integrity="sha256-zGo0JbZ5Sn6wU76MyVL0TrUZUq5GLXaFnMQCe/hSwVI=" crossorigin="anonymous"></script>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.51.1/plotly-finance.min.js" integrity="sha256-NBYAjkVn0EEVVQln0VRYaMEWm/pTd6XCqtac0NbvDMc=" crossorigin="anonymous"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

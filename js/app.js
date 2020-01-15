@@ -1,32 +1,14 @@
 // SCRIPTS FOR UNOFFICIAL LEBANESE LIRA CURRENCY CONVERTER
 // Coded by Ahmad Barclay. No rights reserved.
+// For more info: github.com/bothness/lbp
 
 // SET GLOBAL VARIABLES
 
 // URL of CSV file containing unofficial and official LBP rates
 var csvurl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRbB3FUCo45T0XcPvODVZeLhECABwixfilwLGF3eG2Xj06GC86DlTkMTaKXJLSHniX6ZYPTjZZg6JqV/pub?gid=0&single=true&output=csv";
-// Today's date in yyyy-mm-dd format
-var today = new Date().toISOString().split('T')[0];
 // Default foreign currency
 var fc = "USD";
 var fcoff = "USDo";
-
-
-// INITIALIZE VALUES
-
-// read CSV file, convert to json format, get all of today's rates & set rate for default foreign currency
-fetch(csvurl).then((response) => {
-    return response.text();
-})
-.then((csvdata) => {
-    window.jsondata = $.csv.toObjects(csvdata);
-    window.todayrates = jsondata[jsondata.length - 1];
-    window.fcrate = parseFloat(todayrates[fc]);
-    window.today = todayrates["Date"];
-    document.getElementById("fcrate").innerHTML = fcrate.toFixed(2);
-    document.getElementById("lbp").value = fcrate.toFixed(2);
-    document.getElementById("todaydate").innerHTML = today;
-});
 
 
 // CURRENCY CONVERSION FUNCTIONS
@@ -65,32 +47,33 @@ dropdown.addEventListener("change", function(){
 });
 
 
-// FUNCTION TO PLOT RATE TREND CHART USING PLOT.LY
-// Based on this Plot.ly example
+// FUNCTIONS TO PLOT RATE TREND CHART USING PLOT.LY
+// Chart based on this Plot.ly example
 // https://plot.ly/javascript/time-series/#time-series-with-rangeslider
 
-var doplot = function() {
+// Function to call rows of data
+function unpack(array, key) {
+  return array.map(a => a[key]);
+};
 
-Plotly.d3.csv(csvurl, function(err, rows){
-  function unpack(rows, key) {
-  	return rows.map(function(row) { return row[key]; });
-  }
+// Main function to plot and re-plot rates chart
+function doplot() {
 
 var data = [
   {
     type: "scatter",
     mode: "lines",
     name: "unofficial",
-    x: unpack(rows, 'Date'),
-    y: unpack(rows, fc),
+    x: dates,
+    y: unpack(jsondata, fc),
     line: {color: '#17BECF'}
   },
   {
     type: "scatter",
     mode: "lines",
     name: "official",
-    x: unpack(rows, 'Date'),
-    y: unpack(rows, fcoff),
+    x: dates,
+    y: unpack(jsondata, fcoff),
     line: {color: '#7F7F7F'}
   }
 ];
@@ -122,8 +105,8 @@ var layout = {
     type: 'linear'
   },
   margin: {
-    l: 40,
-    r: 40,
+    l: 50,
+    r: 50,
     b: 20,
     t: 20,
     pad: 4
@@ -132,11 +115,23 @@ var layout = {
 };
 
 Plotly.newPlot('myDiv', data, layout, {displayModeBar: false, responsive: true});
-});
-
 };
 
 
-// INITIAL CALL OF PLOT FUNCTION
+// GET DATA, SET VALUES, INITIALIZE APP
 
-doplot();
+// read CSV file, convert to json format, get all of today's rates & set rate for default foreign currency
+fetch(csvurl).then((response) => {
+    return response.text();
+})
+.then((csvdata) => {
+    window.jsondata = $.csv.toObjects(csvdata);
+    window.todayrates = jsondata[jsondata.length - 1];
+    window.fcrate = parseFloat(todayrates[fc]);
+    window.today = todayrates["Date"];
+    window.dates = unpack(jsondata, "Date");
+    document.getElementById("fcrate").innerHTML = fcrate.toFixed(2);
+    document.getElementById("lbp").value = fcrate.toFixed(2);
+    document.getElementById("todaydate").innerHTML = today;
+    doplot();
+});
