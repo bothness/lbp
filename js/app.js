@@ -6,9 +6,9 @@
 
 // URL of CSV file containing unofficial and official LBP rates
 var csvurl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRbB3FUCo45T0XcPvODVZeLhECABwixfilwLGF3eG2Xj06GC86DlTkMTaKXJLSHniX6ZYPTjZZg6JqV/pub?gid=0&single=true&output=csv";
-// Default foreign currency
-var fc = "USD";
-var fcoff = "USDo";
+// Default foreign currency code
+var fc = "USD"; // unofficial rate
+var fcoff = "USDo"; // official rate
 
 
 // CURRENCY CONVERSION FUNCTIONS
@@ -140,4 +140,5 @@ fetch(csvurl).then((response) => {
     document.getElementById("lbp").value = fcrate.toFixed(2);
     document.getElementById("todaydate").innerHTML = today;
     doplot();
+    document.getElementById("loader").remove();
 });
