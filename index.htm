@@ -12,6 +12,9 @@
 <meta name="description" content="A currency conversion app based on the unofficial/parallel market rate for Lebanese Lira (LBP)">
 <title>Lebanese Lira Converter</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y=" crossorigin="anonymous" />
+<style>
+.linkdiv { cursor: pointer; }
+</style>
 </head>
 <body class="d-flex flex-column h-100">
 
@@ -26,12 +29,12 @@
 </div>
 <div class="col-lg-6 pt-4">
 <div class="row pl-2 pr-2">
-<div class="col-2 text-center p-0"><img src="img/USD.png"><br>USD<br><span class="h5" id="USD"></span><br><small class="text-muted" id="USDo"></small></div>
-<div class="col-2 text-center p-0"><img src="img/EUR.png"><br>EUR<br><span class="h5" id="EUR"></span><br><small class="text-muted" id="EURo"></small></div>
-<div class="col-2 text-center p-0"><img src="img/GBP.png"><br>GBP<br><span class="h5" id="GBP"></span><br><small class="text-muted" id="GBPo"></small></div>
-<div class="col-2 text-center p-0"><img src="img/TRY.png"><br>TRY<br><span class="h5" id="TRY"></span><br><small class="text-muted" id="TRYo"></small></div>
-<div class="col-2 text-center p-0"><img src="img/AED.png"><br>AED<br><span class="h5" id="AED"></span><br><small class="text-muted" id="AEDo"></small></div>
-<div class="col-2 text-center p-0"><img src="img/CAD.png"><br>CAD<br><span class="h5" id="CAD"></span><br><small class="text-muted" id="CADo"></small></div>
+<div class="col-2 text-center p-0 linkdiv" onclick="select('USD')"><img src="img/USD.png"><br>USD<br><span class="h5" id="USD"></span><br><small class="text-muted" id="USDo"></small></div>
+<div class="col-2 text-center p-0 linkdiv" onclick="select('EUR')"><img src="img/EUR.png"><br>EUR<br><span class="h5" id="EUR"></span><br><small class="text-muted" id="EURo"></small></div>
+<div class="col-2 text-center p-0 linkdiv" onclick="select('GBP')"><img src="img/GBP.png"><br>GBP<br><span class="h5" id="GBP"></span><br><small class="text-muted" id="GBPo"></small></div>
+<div class="col-2 text-center p-0 linkdiv" onclick="select('TRY')"><img src="img/TRY.png"><br>TRY<br><span class="h5" id="TRY"></span><br><small class="text-muted" id="TRYo"></small></div>
+<div class="col-2 text-center p-0 linkdiv" onclick="select('AED')"><img src="img/AED.png"><br>AED<br><span class="h5" id="AED"></span><br><small class="text-muted" id="AEDo"></small></div>
+<div class="col-2 text-center p-0 linkdiv" onclick="select('CAD')"><img src="img/CAD.png"><br>CAD<br><span class="h5" id="CAD"></span><br><small class="text-muted" id="CADo"></small></div>
 </div>
 </div>
 </div>

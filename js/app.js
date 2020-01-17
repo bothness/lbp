@@ -7,9 +7,9 @@
 // URL of CSV file containing unofficial and official LBP rates
 var csvurl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRbB3FUCo45T0XcPvODVZeLhECABwixfilwLGF3eG2Xj06GC86DlTkMTaKXJLSHniX6ZYPTjZZg6JqV/pub?gid=0&single=true&output=csv";
 // Default foreign currency code
+var fcname = "US Dollars"
 var fc = "USD"; // unofficial rate
 var fcoff = "USDo"; // official rate
-
 
 // CURRENCY CONVERSION FUNCTIONS
 
@@ -36,27 +36,33 @@ function dogrid() {
   };
 };
 
+// Change conversion currency when popular currency clicked
+function select(fc) {
+  document.getElementById('dropdown').value = fc;
+  change();
+};
+
 // CURRENCY SELECTOR
 
 // Set listener for currency seletion dropdown, to automatically update fields & chart
 var dropdown = document.getElementById("dropdown");
 
-dropdown.addEventListener("change", function(){
-	fc = dropdown.value;
-  fcoff = fc + "o";
-	fcname = dropdown.selectedOptions[0].label;
-	fcrate = parseFloat(todayrates[fc]);
-  fcrateo = parseFloat(todayrates[fcoff]);
+function change() {
+  window.fc = dropdown.value;
+  window.fcoff = window.fc + "o";
+  window.fcname = dropdown.selectedOptions[0].label;
+  window.fcrate = parseFloat(todayrates[fc]);
+  window.fcrateo = parseFloat(todayrates[fcoff]);
   document.getElementById("fcname").innerHTML = fcname;
   document.getElementById("fcrate").innerHTML = fcrate.toFixed(2);
   document.getElementById("fcrateo").innerHTML = fcrateo.toFixed(2);
   document.getElementById("lbp").value = (document.getElementById("fc").value * fcrate).toFixed(2);
   document.getElementById("lbpo").innerHTML = (document.getElementById("fc").value * fcrateo).toFixed(2);
-  document.fc = fc;
-  document.fcoff = fcoff;
-  document.fcname = fcname;
-  document.fcrate = fcrate;
   doplot();
+}
+
+dropdown.addEventListener("change", function(){
+	change();
 });
 
 
@@ -155,7 +161,7 @@ fetch(csvurl).then((response) => {
     document.getElementById("lbp").value = fcrate.toFixed(2);
     document.getElementById("lbpo").innerHTML = fcrateo.toFixed(2);
     document.getElementById("todaydate").innerHTML = today;
-    doplot();
     dogrid();
+    doplot();
     document.getElementById("loader").remove();
 });
