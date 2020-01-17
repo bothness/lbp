@@ -17,12 +17,22 @@
 
 <main role="main" class="flex-shrink-0">
 <div class="container">
-<div class="row pt-3 pb-4">
-<div class="col-lg-6">
+<div class="row pb-4">
+<div class="col-lg-6 pt-3">
 <h2 class="font-weight-bold">Lebanese Lira Converter</h2>
 
 <div>This app is based on the unofficial/parallel market rate for Lebanese Lira (LBP) currency exchange. It uses unofficial LBP/USD exchange rates gathered by <a href="http://lebaneselira.org/" target="_blank" class="text-info">LebaneseLira.org</a>, and foreign exchange rates from <a href="https://support.google.com/docs/answer/3093281?hl=en" target="_blank" class="text-info">Google Finance API</a>.</div>
 
+</div>
+<div class="col-lg-6 pt-4">
+<div class="row pl-2 pr-2">
+<div class="col-2 text-center p-0"><img src="img/USD.png"><br>USD<br><span class="h5" id="USD"></span><br><small class="text-muted" id="USDo"></small></div>
+<div class="col-2 text-center p-0"><img src="img/EUR.png"><br>EUR<br><span class="h5" id="EUR"></span><br><small class="text-muted" id="EURo"></small></div>
+<div class="col-2 text-center p-0"><img src="img/GBP.png"><br>GBP<br><span class="h5" id="GBP"></span><br><small class="text-muted" id="GBPo"></small></div>
+<div class="col-2 text-center p-0"><img src="img/TRY.png"><br>TRY<br><span class="h5" id="TRY"></span><br><small class="text-muted" id="TRYo"></small></div>
+<div class="col-2 text-center p-0"><img src="img/AED.png"><br>AED<br><span class="h5" id="AED"></span><br><small class="text-muted" id="AEDo"></small></div>
+<div class="col-2 text-center p-0"><img src="img/CAD.png"><br>CAD<br><span class="h5" id="CAD"></span><br><small class="text-muted" id="CADo"></small></div>
+</div>
 </div>
 </div>
 
@@ -32,7 +42,8 @@
 <div class="card-body">
 
 <p>1 <span id="fcname">US Dollar</span> =<br>
-<span class="h4"><span id="fcrate"></span> Lebanese Lira</span></p>
+<span class="h4"><span id="fcrate"></span> Lebanese Lira</span><br>
+<small class="text-muted">(<span id="fcrateo"></span> official rate)</small></p>
 
 <form name="converter">
 <div class="form-group row">
@@ -89,6 +100,7 @@
 <div class="form-group row">
 <div class="col-6 pr-2">
 <input type="text" id="lbp" value="" class="form-control">
+<small class="text-muted">(<span id="lbpo"></span> at official rate)</small>
 </div>
 <label for="lbp" class="col-6 pl-2 col-form-label">Lebanese Lira</label>
 </div>

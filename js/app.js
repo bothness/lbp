@@ -19,12 +19,22 @@ var lbpvalue = document.getElementById("lbp");
 
 fcvalue.addEventListener("change", function(){
 	document.converter.lbp.value = (document.converter.fc.value * fcrate).toFixed(2);
+  document.getElementById("lbpo").innerHTML = (document.converter.fc.value * fcrateo).toFixed(2);
 });
 
 lbpvalue.addEventListener("change", function(){
 	document.converter.fc.value = (document.converter.lbp.value / fcrate).toFixed(2);
+  document.getElementById("lbpo").innerHTML = (document.converter.lbp.value / fcrateo).toFixed(2);
 });
 
+// Fill popular currency grid
+var codes = ["USD","USDo","EUR","EURo","GBP","GBPo","TRY","TRYo","AED","AEDo","CAD","CADo"];
+
+function dogrid() {
+  for (var i = 0; i < codes.length; i++) {
+    document.getElementById(codes[i]).innerHTML = parseFloat(todayrates[codes[i]]).toFixed(0);
+  };
+};
 
 // CURRENCY SELECTOR
 
@@ -36,14 +46,17 @@ dropdown.addEventListener("change", function(){
   fcoff = fc + "o";
 	fcname = dropdown.selectedOptions[0].label;
 	fcrate = parseFloat(todayrates[fc]);
-    document.getElementById("fcname").innerHTML = fcname;
-    document.getElementById("fcrate").innerHTML = fcrate.toFixed(2);
-    document.getElementById("lbp").value = (document.getElementById("fc").value * fcrate).toFixed(2);
-    document.fc = fc;
-    document.fcoff = fcoff;
-    document.fcname = fcname;
-    document.fcrate = fcrate;
-    doplot();
+  fcrateo = parseFloat(todayrates[fcoff]);
+  document.getElementById("fcname").innerHTML = fcname;
+  document.getElementById("fcrate").innerHTML = fcrate.toFixed(2);
+  document.getElementById("fcrateo").innerHTML = fcrateo.toFixed(2);
+  document.getElementById("lbp").value = (document.getElementById("fc").value * fcrate).toFixed(2);
+  document.getElementById("lbpo").innerHTML = (document.getElementById("fc").value * fcrateo).toFixed(2);
+  document.fc = fc;
+  document.fcoff = fcoff;
+  document.fcname = fcname;
+  document.fcrate = fcrate;
+  doplot();
 });
 
 
@@ -134,11 +147,15 @@ fetch(csvurl).then((response) => {
     window.jsondata = $.csv.toObjects(csvdata);
     window.todayrates = jsondata[jsondata.length - 1];
     window.fcrate = parseFloat(todayrates[fc]);
+    window.fcrateo = parseFloat(todayrates[fcoff]);
     window.today = todayrates["Date"];
     window.dates = unpack(jsondata, "Date");
     document.getElementById("fcrate").innerHTML = fcrate.toFixed(2);
+    document.getElementById("fcrateo").innerHTML = fcrateo.toFixed(2);
     document.getElementById("lbp").value = fcrate.toFixed(2);
+    document.getElementById("lbpo").innerHTML = fcrateo.toFixed(2);
     document.getElementById("todaydate").innerHTML = today;
     doplot();
+    dogrid();
     document.getElementById("loader").remove();
 });
