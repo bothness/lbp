@@ -24,7 +24,7 @@ fcvalue.addEventListener("change", function(){
 
 lbpvalue.addEventListener("change", function(){
 	document.converter.fc.value = (document.converter.lbp.value / fcrate).toFixed(2);
-  document.getElementById("lbpo").innerHTML = (document.converter.lbp.value / fcrateo).toFixed(2);
+  document.getElementById("lbpo").innerHTML = (document.converter.lbp.value / (fcrate / fcrateo)).toFixed(2);
 });
 
 // Fill popular currency grid
