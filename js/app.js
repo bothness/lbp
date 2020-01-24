@@ -100,7 +100,7 @@ var data = [
 var layout = {
 	xaxis: {
     autorange: true,
-    range: ['2019-11-06', today],
+    range: ['2019-07-31', today],
     rangeselector: {buttons: [
         {
           count: 7,
@@ -122,12 +122,20 @@ var layout = {
         },
         {step: 'all'}
       ]},
-    rangeslider: {range: ['2019-11-06', today]},
+    rangeslider: {range: ['2019-07-31', today]},
     type: 'date'
   },
   yaxis: {
     autorange: true,
     type: 'linear'
+  },
+  legend: {
+    x: 0,
+    xanchor: 'left',
+    y: 1,
+    borderwidth: 8,
+    bordercolor: 'rgba(255,255,255,0)',
+    bgcolor: 'rgba(255,255,255,0)'
   },
   margin: {
     l: 50,
