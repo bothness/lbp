@@ -4,12 +4,16 @@
 
 // SET GLOBAL VARIABLES
 
-// URL of CSV file containing unofficial and official LBP rates
+// URL of CSV files containing unofficial and official LBP rates & metadata on most recent updates
 var csvurl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRbB3FUCo45T0XcPvODVZeLhECABwixfilwLGF3eG2Xj06GC86DlTkMTaKXJLSHniX6ZYPTjZZg6JqV/pub?gid=0&single=true&output=csv";
+var metaurl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRbB3FUCo45T0XcPvODVZeLhECABwixfilwLGF3eG2Xj06GC86DlTkMTaKXJLSHniX6ZYPTjZZg6JqV/pub?gid=2112883781&single=true&output=csv";
 // Default foreign currency code
 var fcname = "US Dollars"
 var fc = "USD"; // unofficial rate
 var fcoff = "USDo"; // official rate
+// Current timezone in Lebanon, EET or EEDT (for reporting last update metadata)
+var timezone = (new Date()).toLocaleString([], {timeZone: 'Asia/Beirut', timeZoneName: 'short'}).split(" ");
+timezone = timezone[timezone.length - 1];
 
 // CURRENCY CONVERSION FUNCTIONS
 
@@ -153,7 +157,7 @@ Plotly.newPlot('myDiv', data, layout, {displayModeBar: false, responsive: true})
 
 // GET DATA, SET VALUES, INITIALIZE APP
 
-// read CSV file, convert to json format, get all of today's rates & set rate for default foreign currency
+// read rates CSV file, convert to json, get all of today's rates & set rate for default foreign currency
 fetch(csvurl).then((response) => {
     return response.text();
 })
@@ -168,8 +172,19 @@ fetch(csvurl).then((response) => {
     document.getElementById("fcrateo").innerHTML = fcrateo.toFixed(2);
     document.getElementById("lbp").value = fcrate.toFixed(2);
     document.getElementById("lbpo").innerHTML = fcrateo.toFixed(2);
-    document.getElementById("todaydate").innerHTML = today;
     dogrid();
     doplot();
     document.getElementById("loader").remove();
+});
+
+// Read metadata CSV file, convert to json, get update times
+fetch(metaurl).then((response) => {
+    return response.text();
+})
+.then((metacsv) => {
+    var metadata = $.csv.toObjects(metacsv);
+    document.getElementById("lldate").innerHTML = metadata[0].ll_update_date;
+    document.getElementById("lltime").innerHTML = metadata[0].ll_update_time + " " + window.timezone;
+    document.getElementById("godate").innerHTML = metadata[0].go_update_date;
+    document.getElementById("gotime").innerHTML = metadata[0].go_update_time + " " + window.timezone;
 });
