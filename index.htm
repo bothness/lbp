@@ -18,32 +18,13 @@
 </head>
 <body class="d-flex flex-column h-100">
 
-<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Important note!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      For the moment this site reflects only the rates at which exchangers are <em>buying</em> foreign currency for Lebanese Liras, but not the rate at which they are <em>selling</em> foreign currency. This is because on 21 January 2020 the Syndicate of Exchange Houses set a common exchange rate of 2000 LBP per 1 USD, but none are presently willing to sell dollars at this rate or to declare an unofficial sell rate.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <main role="main" class="flex-shrink-0">
 <div class="container">
 <div class="row pb-4 pt-2">
 <div class="col-lg-6 pt-2">
 <h2 class="font-weight-bold">Lebanese Lira Converter</h2>
 
-<div>This app is based on the unofficial/parallel market rate for Lebanese Lira (LBP) currency exchange. It uses unofficial LBP/USD exchange rates gathered by <a href="http://lebaneselira.org/" target="_blank" class="text-info">LebaneseLira.org</a>, and foreign exchange rates from <a href="https://support.google.com/docs/answer/3093281?hl=en" target="_blank" class="text-info">Google Finance API</a>.</div>
+<div>This app is based on the unofficial/parallel market rate for Lebanese Lira (LBP) currency exchange. It uses "black market" LBP/USD exchange rates reported by <a href="http://lebaneselira.org/" target="_blank" class="text-info">LebaneseLira.org</a>, and foreign exchange rates from <a href="https://support.google.com/docs/answer/3093281?hl=en" target="_blank" class="text-info">Google Finance API</a>.</div>
 
 </div>
 <div class="col-lg-6 pt-4">
@@ -147,13 +128,12 @@
 
 <footer class="footer mt-auto py-2 bg-secondary">
 <div class="container">
-<small class="text-light mb-2">Coded by <a href="https://twitter.com/bothness" target="_blank" class="text-info">Ahmad Barclay</a>. No rights reserved (Unlicense). <a href="https://github.com/bothness/lbp" target="_blank" class="text-info">Get the code</a>.</small>
+<small class="text-light mb-2"><nobr>Coded by <a href="https://twitter.com/bothness" target="_blank" class="text-info">Ahmad Barclay</a>.</nobr> <nobr>No rights reserved (Unlicense).</nobr> <nobr><a href="https://github.com/bothness/lbp" target="_blank" class="text-info">Get the code</a>.</nobr></small>
 </div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.8/jquery.csv.min.js" integrity="sha256-zGo0JbZ5Sn6wU76MyVL0TrUZUq5GLXaFnMQCe/hSwVI=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha256-WqU1JavFxSAMcLP2WIOI+GB2zWmShMI82mTpLDcqFUg=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.51.1/plotly-finance.min.js" integrity="sha256-NBYAjkVn0EEVVQln0VRYaMEWm/pTd6XCqtac0NbvDMc=" crossorigin="anonymous"></script>
 <script src="js/app.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156277660-1"></script>
@@ -163,9 +143,6 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'UA-156277660-1');
-
-// Show alert
-$('#alertModal').modal('show')
 </script>
 </body>
 </html>
