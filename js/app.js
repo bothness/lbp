@@ -5,12 +5,11 @@
 // SET GLOBAL VARIABLES
 
 // URL of CSV files containing unofficial and official LBP rates & metadata on most recent updates
-var csvurl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRbB3FUCo45T0XcPvODVZeLhECABwixfilwLGF3eG2Xj06GC86DlTkMTaKXJLSHniX6ZYPTjZZg6JqV/pub?gid=0&single=true&output=csv";
-var metaurl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRbB3FUCo45T0XcPvODVZeLhECABwixfilwLGF3eG2Xj06GC86DlTkMTaKXJLSHniX6ZYPTjZZg6JqV/pub?gid=2112883781&single=true&output=csv";
+var csvurl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8wgCoLlWHwtph7TR3ZcMrlkpnJjug84yczkWcqeVcSMSRZGMbwhOyidT7BWL_LmDxn2TlVUFZHA92/pub?gid=0&single=true&output=csv";
+var metaurl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8wgCoLlWHwtph7TR3ZcMrlkpnJjug84yczkWcqeVcSMSRZGMbwhOyidT7BWL_LmDxn2TlVUFZHA92/pub?gid=2112883781&single=true&output=csv";
 // Default foreign currency code
 var fcname = "US Dollars"
 var fc = "USD"; // unofficial rate
-var fcoff = "USDo"; // official rate
 // Current timezone in Lebanon, EET or EEDT (for reporting last update metadata)
 var timezone = (new Date()).toLocaleString([], {timeZone: 'Asia/Beirut', timeZoneName: 'short'}).split(" ");
 timezone = timezone[timezone.length - 1];
@@ -32,11 +31,12 @@ lbpvalue.addEventListener("change", function(){
 });
 
 // Fill popular currency grid
-var codes = ["USD","USDo","EUR","EURo","GBP","GBPo","TRY","TRYo","AED","AEDo","CAD","CADo"];
+var codes = ["USD","EUR","GBP","TRY","AED","CAD"];
 
 function dogrid() {
   for (var i = 0; i < codes.length; i++) {
-    document.getElementById(codes[i]).innerHTML = parseFloat(todayrates[codes[i]]).toFixed(0);
+    document.getElementById(codes[i]).innerHTML = (parseFloat(todayrates[codes[i]]) * parseFloat(todayrates["LBP"])).toFixed(0);
+    document.getElementById(codes[i] + "o").innerHTML = parseFloat(todayrates[codes[i]]).toFixed(0);
   };
 };
 
@@ -53,10 +53,9 @@ var dropdown = document.getElementById("dropdown");
 
 function change() {
   window.fc = dropdown.value;
-  window.fcoff = window.fc + "o";
   window.fcname = dropdown.selectedOptions[0].label;
-  window.fcrate = parseFloat(todayrates[fc]);
-  window.fcrateo = parseFloat(todayrates[fcoff]);
+  window.fcrate = parseFloat(todayrates[fc]) * parseFloat(todayrates['LBP']);
+  window.fcrateo = parseFloat(todayrates[fc]);
   document.getElementById("fcname").innerHTML = fcname;
   document.getElementById("fcrate").innerHTML = fcrate.toFixed(2);
   document.getElementById("fcrateo").innerHTML = fcrateo.toFixed(2);
@@ -74,9 +73,14 @@ dropdown.addEventListener("change", function(){
 // Chart based on this Plot.ly example
 // https://plot.ly/javascript/time-series/#time-series-with-rangeslider
 
-// Function to call rows of data
+// Function to call official rates for all available dates
 function unpack(array, key) {
   return array.map(a => a[key]);
+};
+
+// Function to call unofficial rates for all available dates
+function unpackun(array, key) {
+  return array.map(a => a[key] * a['LBP']);
 };
 
 // Main function to plot and re-plot rates chart
@@ -88,7 +92,7 @@ var data = [
     mode: "lines",
     name: "unofficial",
     x: dates,
-    y: unpack(jsondata, fc),
+    y: unpackun(jsondata, fc),
     line: {color: '#17BECF'}
   },
   {
@@ -96,7 +100,7 @@ var data = [
     mode: "lines",
     name: "official",
     x: dates,
-    y: unpack(jsondata, fcoff),
+    y: unpack(jsondata, fc),
     line: {color: '#7F7F7F'}
   }
 ];
@@ -164,8 +168,8 @@ fetch(csvurl).then((response) => {
 .then((csvdata) => {
     window.jsondata = $.csv.toObjects(csvdata);
     window.todayrates = jsondata[jsondata.length - 1];
-    window.fcrate = parseFloat(todayrates[fc]);
-    window.fcrateo = parseFloat(todayrates[fcoff]);
+    window.fcrate = parseFloat(todayrates[fc]) * parseFloat(todayrates['LBP']);
+    window.fcrateo = parseFloat(todayrates[fc]);
     window.today = todayrates["Date"];
     window.dates = unpack(jsondata, "Date");
     document.getElementById("fcrate").innerHTML = fcrate.toFixed(2);
